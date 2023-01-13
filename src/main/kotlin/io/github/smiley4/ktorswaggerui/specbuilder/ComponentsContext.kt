@@ -84,7 +84,7 @@ data class ComponentsContext(
 
     private fun getIdentifyingName(type: Type): String {
         return when (type) {
-            is Class<*> -> type.canonicalName
+            is Class<*> -> type.simpleName
             is ParameterizedType -> getIdentifyingName(type.rawType) + "<" + getIdentifyingName(type.actualTypeArguments.first()) + ">"
             is WildcardType -> getIdentifyingName(type.upperBounds.first())
             else -> throw Exception("Could not get identifying name from $type")
